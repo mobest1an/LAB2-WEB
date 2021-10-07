@@ -25,7 +25,7 @@ public class AreaCheckServlet extends HttpServlet {
         try {
             x = Double.parseDouble(xChange);
             y = Double.parseDouble(yChange);
-            r = Integer.parseInt(rChange);
+            r = Double.parseDouble(rChange);
         } catch (NumberFormatException e) {
             request.getRequestDispatcher("/error_page.jsp").forward(request, response);
             return;

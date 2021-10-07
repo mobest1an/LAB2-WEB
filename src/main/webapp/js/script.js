@@ -6,6 +6,31 @@ window.onload = function () {
     }, 1);
 };
 
+$('.area').click(function (e) {
+    let target = this.getBoundingClientRect();
+    let x = e.clientX - target.left;
+    let y = e.clientY - target.top;
+    let xInfo = $('#x-title');
+    let yInfo = $('#y-title');
+    let r = $('select[name=r-change]').val();
+    let coeff = (269 - 161) / r;
+    x = Math.round((x - 161) / coeff);
+    y = -((y - 161) / coeff);
+    if (x >= -2 && x <= 2) {
+        if (y > -3 && y < 3) {
+            $('select[name=x-change] option[value=' + x + ']').prop('selected', true);
+            $('input[name=y-change]').val(y.toFixed(3));
+            $('#main-form').submit();
+        } else {
+            yInfo.html("Число не соответствует диапазону!");
+            yInfo.css("color", "red");
+        }
+    } else {
+        xInfo.html("Число не соответствует диапазону!");
+        xInfo.css("color", "red");
+    }
+});
+
 function validate() {
     return validateY();
 }

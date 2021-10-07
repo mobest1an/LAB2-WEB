@@ -36,6 +36,7 @@
 <section class="program">
     <div class="container-main container-program">
         <div class="program-parts">
+            <span id="test"></span>
             <div class="program-img">
                 <img class="area" src="img/areas.png" alt="Визуализация">
             </div>
@@ -43,15 +44,15 @@
                 <div class="x-interval intervals">
                     <p id="x-title">Выберите координату X:</p>
                     <select name="x-change">
-                        <option>-2</option>
-                        <option>-1.5</option>
-                        <option>-1</option>
-                        <option>-0.5</option>
-                        <option selected="selected">0</option>
-                        <option>0.5</option>
-                        <option>1</option>
-                        <option>1.5</option>
-                        <option>2</option>
+                        <option value="-2">-2</option>
+                        <option value="-1.5">-1.5</option>
+                        <option value="-1">-1</option>
+                        <option value="-0.5">-0.5</option>
+                        <option selected="selected" value="0">0</option>
+                        <option value="0.5">0.5</option>
+                        <option value="1">1</option>
+                        <option value="1.5">1.5</option>
+                        <option value="2">2</option>
                     </select>
                 </div>
                 <div class="y-interval intervals">
@@ -63,13 +64,9 @@
                     <p id="r-title">Выберите параметр R:</p>
                     <select name="r-change">
                         <option>1</option>
-                        <option>1.5</option>
                         <option>2</option>
-                        <option>2.5</option>
                         <option>3</option>
-                        <option>3.5</option>
                         <option>4</option>
-                        <option>4.5</option>
                         <option>5</option>
                     </select>
                 </div>
@@ -116,6 +113,7 @@
 
     </div>
 </footer>
+<script src="js/jquery-3.6.0.min.js"></script>
 <script src="js/script.js"></script>
 </body>
 </html>
