@@ -14,7 +14,7 @@ $('.area').click(function (e) {
     let yInfo = $('#y-title');
     let r = $('select[name=r-change]').val();
     let coeff = (269 - 161) / r;
-    x = Math.round((x - 161) / coeff);
+    x = round(((x - 161) / coeff), 0.5);
     y = -((y - 161) / coeff);
     if (x >= -2 && x <= 2) {
         if (y > -3 && y < 3) {
@@ -30,6 +30,12 @@ $('.area').click(function (e) {
         xInfo.css("color", "red");
     }
 });
+
+function round(value, step) {
+    step || (step = 1.0);
+    let inv = 1.0 / step;
+    return Math.round(value * inv) / inv;
+}
 
 function validate() {
     return validateY();

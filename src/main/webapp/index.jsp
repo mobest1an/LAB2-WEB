@@ -43,7 +43,7 @@
             <form id="main-form" action="start" onsubmit="return validate()" method="get">
                 <div class="x-interval intervals">
                     <p id="x-title">Выберите координату X:</p>
-                    <select name="x-change">
+                    <select name="x-change" id="x-change">
                         <option value="-2">-2</option>
                         <option value="-1.5">-1.5</option>
                         <option value="-1">-1</option>
