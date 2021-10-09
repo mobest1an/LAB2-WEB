@@ -13,12 +13,12 @@ $('.area').click(function (e) {
     let xInfo = $('#x-title');
     let yInfo = $('#y-title');
     let r = $('select[name=r-change]').val();
-    let coeff = (269 - 161) / r;
+    let coeff = (281 - 161) / r;
     x = round(((x - 161) / coeff), 0.5);
     y = -((y - 161) / coeff);
     if (x >= -2 && x <= 2) {
         if (y > -3 && y < 3) {
-            $('select[name=x-change] option[value=' + x + ']').prop('selected', true);
+            document.getElementById("x-change").value = x;
             $('input[name=y-change]').val(y.toFixed(3));
             $('#main-form').submit();
         } else {

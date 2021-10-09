@@ -38,7 +38,26 @@
         <div class="program-parts">
             <span id="test"></span>
             <div class="program-img">
-                <img class="area" src="img/areas.png" alt="Визуализация">
+                <svg class="area" width="221" height="221" viewbox=" 0 0 400 400">
+                    <line x1="0%" y1="50%" x2="100%" y2="50%" stroke="black"></line>
+                    <line x1="50%" y1="0%" x2="50%" y2="100%" stroke="black"></line>
+                    <text x="48%" y="10%" class="mal">-- R</text>
+                    <text x="48%" y="30%" class="mal">-- R/2</text>
+                    <text x="48%" y="70%" class="mal">-- -R/2</text>
+                    <text x="48%" y="90%" class="mal">-- -R</text>
+                    <text x="10%" y="51%" class="mal">|</text>
+                    <text x="30%" y="51%" class="mal">|</text>
+                    <text x="50%" y="51%" class="mal">0</text>
+                    <text x="70%" y="51%" class="mal">|</text>
+                    <text x="90%" y="51%" class="mal">|</text>
+                    <text x="7%" y="48%" class="mal">-R</text>
+                    <text x="27%" y="48%" class="mal">-R/2</text>
+                    <text x="67%" y="48%" class="mal">R/2</text>
+                    <text x="87%" y="48%" class="mal">R</text>
+                    <rect fill="#4169E1" x="30.5%" y="50%" width="19.5%" height="39%" fill-opacity="0.6"></rect>
+                    <polygon fill="#4169E1" fill-opacity="0.6" points="42,200 200,200 200,36"></polygon>
+                    <path d="M 200 36 C 260 45 350 45 362 200 L 200 200 Z" fill="#4169E1" fill-opacity="0.6"></path>
+                </svg>
             </div>
             <form id="main-form" action="start" onsubmit="return validate()" method="get">
                 <div class="x-interval intervals">
