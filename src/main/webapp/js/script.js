@@ -14,13 +14,11 @@ $('.area').click(function (e) {
     let yInfo = $('#y-title');
     let r = $('select[name=r-change]').val();
     let coeff = (281 - 161) / r;
-    x = round(((x - 161) / coeff), 0.5);
-    y = -((y - 161) / coeff);
+    x = ((x - 161) / coeff).toFixed(3);
+    y = -((y - 161) / coeff).toFixed(3);
     if (x >= -2 && x <= 2) {
         if (y > -3 && y < 3) {
-            document.getElementById("x-change").value = x;
-            $('input[name=y-change]').val(y.toFixed(3));
-            $('#main-form').submit();
+            window.location = window.location + '?x-change=' + x + '&y-change=' + y + '&r-change=' + r;
         } else {
             yInfo.html("Число не соответствует диапазону!");
             yInfo.css("color", "red");
@@ -30,12 +28,6 @@ $('.area').click(function (e) {
         xInfo.css("color", "red");
     }
 });
-
-function round(value, step) {
-    step || (step = 1.0);
-    let inv = 1.0 / step;
-    return Math.round(value * inv) / inv;
-}
 
 function validate() {
     return validateY();

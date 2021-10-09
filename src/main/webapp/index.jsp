@@ -47,16 +47,44 @@
                     <text x="48%" y="90%" class="mal">-- -R</text>
                     <text x="10%" y="51%" class="mal">|</text>
                     <text x="30%" y="51%" class="mal">|</text>
-                    <text x="50%" y="51%" class="mal">0</text>
+                    <text x="46%" y="55%" class="mal">0</text>
                     <text x="70%" y="51%" class="mal">|</text>
                     <text x="90%" y="51%" class="mal">|</text>
                     <text x="7%" y="48%" class="mal">-R</text>
                     <text x="27%" y="48%" class="mal">-R/2</text>
                     <text x="67%" y="48%" class="mal">R/2</text>
                     <text x="87%" y="48%" class="mal">R</text>
-                    <rect fill="#4169E1" x="30.5%" y="50%" width="19.5%" height="39%" fill-opacity="0.6"></rect>
-                    <polygon fill="#4169E1" fill-opacity="0.6" points="42,200 200,200 200,36"></polygon>
-                    <path d="M 200 36 C 260 45 350 45 362 200 L 200 200 Z" fill="#4169E1" fill-opacity="0.6"></path>
+                    <rect fill="#2f9aff" x="30.5%" y="50%" width="19.5%" height="39%" fill-opacity="0.6"></rect>
+                    <polygon fill="#2f9aff" points="42,200 200,200 200,36" fill-opacity="0.6"></polygon>
+                    <path d="M 200 36 C 260 45 350 45 362 200 L 200 200 Z" fill="#2f9aff" fill-opacity="0.6"></path>
+                    <%
+                        double maxR = 0;
+                        ArrayList<Result> lastResults = (ArrayList<Result>) request.getServletContext().getAttribute("last-results");
+                        if (lastResults.size() != 0) {
+                            for (Result result : lastResults) {
+                                double reqR = result.getR();
+                                if (reqR > maxR) {
+                                    maxR = reqR;
+                                }
+                            }
+                            for (Result result : lastResults) {
+                                double reqX = result.getX();
+                                double reqY = result.getY();
+                                double reqR = result.getR();
+                                String reqHit = result.getHit();
+                                System.out.println(maxR + " " + reqR);
+                                double coeff = 82 * (reqR / maxR);
+                                double x = (reqX * 2) / reqR * coeff + 200;
+                                double y = 200 - (reqY * 2) / reqR * coeff;
+                                if (reqHit.equals("Да")) {
+                                    out.println("<circle cx=\"" + x + "\" cy=\"" + y + "\" r=\"3\" fill=\"green\" />");
+                                } else {
+                                    out.println("<circle cx=\"" + x + "\" cy=\"" + y + "\" r=\"3\" fill=\"red\" />");
+                                }
+                            }
+                        }
+                        System.out.println();
+                    %>
                 </svg>
             </div>
             <form id="main-form" action="start" onsubmit="return validate()" method="get">
@@ -100,7 +128,6 @@
             </form>
         </div>
         <%
-            ArrayList<Result> lastResults = (ArrayList<Result>) request.getServletContext().getAttribute("last-results");
             if (lastResults.size() != 0) {
                 out.println("<div class=\"container-main container-result\">");
                 out.println("<div class=\"last-results\">");
