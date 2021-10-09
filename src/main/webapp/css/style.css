@@ -182,14 +182,13 @@ body {
 
 .container-result {
     width: 100%;
-    padding-top: 30px;
     text-align: center;
     max-width: 850px;
     color: #536e7b;
 }
 
 .container-current-result {
-    margin-top: 15%;
+    margin-top: 5%;
     border: 2px solid #2f9aff;
     border-radius: 15px;
     padding: 10px;

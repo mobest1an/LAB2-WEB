@@ -72,7 +72,6 @@
                                 double reqY = result.getY();
                                 double reqR = result.getR();
                                 String reqHit = result.getHit();
-                                System.out.println(maxR + " " + reqR);
                                 double coeff = 82 * (reqR / maxR);
                                 double x = (reqX * 2) / reqR * coeff + 200;
                                 double y = 200 - (reqY * 2) / reqR * coeff;
@@ -83,7 +82,6 @@
                                 }
                             }
                         }
-                        System.out.println();
                     %>
                 </svg>
             </div>
