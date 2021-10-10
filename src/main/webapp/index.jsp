@@ -115,30 +115,30 @@
                 </div>
             </form>
         </div>
-<%--        <%--%>
-<%--            if (lastResults.size() != 0) {--%>
-<%--                out.println("<div class=\"container-main container-result\">");--%>
-<%--                out.println("<div class=\"last-results\">");--%>
-<%--                out.println("<div class=\"last-results-title\">Прошлые результаты:</div>");--%>
-<%--                out.println("<table id=\"last-results-table\"><tr>");--%>
-<%--                out.println("<th><div class=\"last-results-key\"><span>Координата X:</span></div></th>");--%>
-<%--                out.println("<th><div class=\"last-results-key\">Координата Y:</div></th>");--%>
-<%--                out.println("<th><div class=\"last-results-key\">Параметр R:</div></th>");--%>
-<%--                out.println("<th><div class=\"last-results-key\">Попала:</div></th>");--%>
-<%--                out.println("<th><div class=\"last-results-key\">Время выполнения:</div></th></tr>");--%>
-<%--                for (Result result : lastResults) {--%>
-<%--                    out.println("<tr class='request'>");--%>
-<%--                    out.println("<td class='parameter'><div>" + result.getX() + "</div></td>");--%>
-<%--                    out.println("<td class='parameter'><div>" + result.getY() + "</div></td>");--%>
-<%--                    out.println("<td class='parameter'><div>" + result.getR() + "</div></td>");--%>
-<%--                    out.println("<td class='parameter'><div>" + result.getHit() + "</div></td>");--%>
-<%--                    out.println("<td class='parameter'><div>" + result.getTime() + " мкс" + "</div></td>");--%>
-<%--                    out.println("</tr>");--%>
-<%--                }--%>
-<%--                out.println("</table>");--%>
-<%--                out.println("</div></div>");--%>
-<%--            }--%>
-<%--        %>--%>
+        <%
+            if (lastResults.size() != 0) {
+                out.println("<div class=\"container-main container-result\">");
+                out.println("<div class=\"last-results\">");
+                out.println("<div class=\"last-results-title\">Прошлые результаты:</div>");
+                out.println("<table id=\"last-results-table\"><tr>");
+                out.println("<th><div class=\"last-results-key\"><span>Координата X:</span></div></th>");
+                out.println("<th><div class=\"last-results-key\">Координата Y:</div></th>");
+                out.println("<th><div class=\"last-results-key\">Параметр R:</div></th>");
+                out.println("<th><div class=\"last-results-key\">Попала:</div></th>");
+                out.println("<th><div class=\"last-results-key\">Время выполнения:</div></th></tr>");
+                for (Result result : lastResults) {
+                    out.println("<tr class='request'>");
+                    out.println("<td class='parameter'><div>" + result.getX() + "</div></td>");
+                    out.println("<td class='parameter'><div>" + result.getY() + "</div></td>");
+                    out.println("<td class='parameter'><div>" + result.getR() + "</div></td>");
+                    out.println("<td class='parameter'><div>" + result.getHit() + "</div></td>");
+                    out.println("<td class='parameter'><div>" + result.getTime() + " мкс" + "</div></td>");
+                    out.println("</tr>");
+                }
+                out.println("</table>");
+                out.println("</div></div>");
+            }
+        %>
     </div>
 </section>
 
