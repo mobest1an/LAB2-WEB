@@ -10,12 +10,13 @@ $('.area').click(function (e) {
     let target = this.getBoundingClientRect();
     let x = e.clientX - target.left;
     let y = e.clientY - target.top;
+    $('#test').html(x + ' ' + y);
     let xInfo = $('#x-title');
     let yInfo = $('#y-title');
     let r = $('select[name=r-change]').val();
-    let coeff = (281 - 161) / r;
-    x = ((x - 161) / coeff).toFixed(3);
-    y = -((y - 161) / coeff).toFixed(3);
+    let coeff = 100 / r;
+    x = ((x - 152) / coeff).toFixed(3);
+    y = -((y - 152) / coeff).toFixed(3);
     if (x >= -2 && x <= 2) {
         if (y > -3 && y < 3) {
             window.location = window.location + '?x-change=' + x + '&y-change=' + y + '&r-change=' + r;

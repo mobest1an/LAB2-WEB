@@ -38,25 +38,12 @@
         <div class="program-parts">
             <span id="test"></span>
             <div class="program-img">
-                <svg class="area" width="221" height="221" viewbox=" 0 0 400 400">
-                    <line x1="0%" y1="50%" x2="100%" y2="50%" stroke="black"></line>
-                    <line x1="50%" y1="0%" x2="50%" y2="100%" stroke="black"></line>
-                    <text x="48%" y="10%" class="mal">-- R</text>
-                    <text x="48%" y="30%" class="mal">-- R/2</text>
-                    <text x="48%" y="70%" class="mal">-- -R/2</text>
-                    <text x="48%" y="90%" class="mal">-- -R</text>
-                    <text x="10%" y="51%" class="mal">|</text>
-                    <text x="30%" y="51%" class="mal">|</text>
-                    <text x="46%" y="55%" class="mal">0</text>
-                    <text x="70%" y="51%" class="mal">|</text>
-                    <text x="90%" y="51%" class="mal">|</text>
-                    <text x="7%" y="48%" class="mal">-R</text>
-                    <text x="27%" y="48%" class="mal">-R/2</text>
-                    <text x="67%" y="48%" class="mal">R/2</text>
-                    <text x="87%" y="48%" class="mal">R</text>
-                    <rect fill="#2f9aff" x="30.5%" y="50%" width="19.5%" height="39%" fill-opacity="0.6"></rect>
-                    <polygon fill="#2f9aff" points="42,200 200,200 200,36" fill-opacity="0.6"></polygon>
-                    <path d="M 200 36 C 260 45 350 45 362 200 L 200 200 Z" fill="#2f9aff" fill-opacity="0.6"></path>
+                <svg class="area" viewBox="0 0 300 300">
+                    <path style="fill-opacity: 0.6; fill: rgb(47, 154, 255);" transform="matrix(0, 0.488267, -0.488267, 0, 292.671631, -0.386225)" d="M 103.194 292.2 A 204.806 204.806 0 0 1 308 87.394 L 308 292.2 Z" bx:shape="pie 308 292.2 0 204.806 270 360 1@9dd7fd0f" bx:origin="0.5 0.499702"></path>
+                    <line style="stroke-opacity: 0.6; stroke: rgb(0, 0, 0);" x1="150" y1="25" x2="150" y2="275"></line>
+                    <line style="stroke-opacity: 0.6; stroke: rgb(0, 0, 0);" x1="150" y1="25" x2="150" y2="275" transform="matrix(0, 1, -1, 0, 300, 0)"></line>
+                    <rect x="100" y="150" width="50" height="100" style="fill: rgb(47, 154, 255); fill-opacity: 0.6;"></rect>
+                    <path d="M 38.238 47.448 L 138.238 147.448 L 38.238 147.448 L 38.238 47.448 Z" style="fill: rgb(47, 154, 255); fill-opacity: 0.6;" transform="matrix(-0.000035, -1, 1, -0.000035, 2.556837, 188.243164)" bx:shape="triangle 38.238 47.448 100 100 0 0 1@283add74"></path>
                     <%
                         double maxR = 0;
                         ArrayList<Result> lastResults = (ArrayList<Result>) request.getServletContext().getAttribute("last-results");
@@ -71,11 +58,14 @@
                                 double reqX = result.getX();
                                 double reqY = result.getY();
                                 double reqR = result.getR();
-                                String reqHit = result.getHit();
-                                double coeff = 82 * (reqR / maxR);
-                                double x = (reqX * 2) / reqR * coeff + 200;
-                                double y = 200 - (reqY * 2) / reqR * coeff;
-                                if (reqHit.equals("Да")) {
+                                double coeff = 100 * (reqR / maxR);
+                                double x = reqX / reqR * coeff + 150;
+                                double y = 150 - (reqY) / reqR * coeff;
+                                if (reqX >= 0 && reqY >= 0 && (Math.pow(reqX, 2) + Math.pow(reqY, 2)) <= Math.pow(maxR, 2)) {
+                                    out.println("<circle cx=\"" + x + "\" cy=\"" + y + "\" r=\"3\" fill=\"green\" />");
+                                } else if (reqX <= 0 && reqY >= 0 && reqX - reqY >= (-maxR)) {
+                                    out.println("<circle cx=\"" + x + "\" cy=\"" + y + "\" r=\"3\" fill=\"green\" />");
+                                } else if (reqX <= 0 && reqY <= 0 && reqX >= -maxR / 2 && reqY >= -maxR) {
                                     out.println("<circle cx=\"" + x + "\" cy=\"" + y + "\" r=\"3\" fill=\"green\" />");
                                 } else {
                                     out.println("<circle cx=\"" + x + "\" cy=\"" + y + "\" r=\"3\" fill=\"red\" />");
@@ -125,30 +115,30 @@
                 </div>
             </form>
         </div>
-        <%
-            if (lastResults.size() != 0) {
-                out.println("<div class=\"container-main container-result\">");
-                out.println("<div class=\"last-results\">");
-                out.println("<div class=\"last-results-title\">Прошлые результаты:</div>");
-                out.println("<table id=\"last-results-table\"><tr>");
-                out.println("<th><div class=\"last-results-key\"><span>Координата X:</span></div></th>");
-                out.println("<th><div class=\"last-results-key\">Координата Y:</div></th>");
-                out.println("<th><div class=\"last-results-key\">Параметр R:</div></th>");
-                out.println("<th><div class=\"last-results-key\">Попала:</div></th>");
-                out.println("<th><div class=\"last-results-key\">Время выполнения:</div></th></tr>");
-                for (Result result : lastResults) {
-                    out.println("<tr class='request'>");
-                    out.println("<td class='parameter'><div>" + result.getX() + "</div></td>");
-                    out.println("<td class='parameter'><div>" + result.getY() + "</div></td>");
-                    out.println("<td class='parameter'><div>" + result.getR() + "</div></td>");
-                    out.println("<td class='parameter'><div>" + result.getHit() + "</div></td>");
-                    out.println("<td class='parameter'><div>" + result.getTime() + " мкс" + "</div></td>");
-                    out.println("</tr>");
-                }
-                out.println("</table>");
-                out.println("</div></div>");
-            }
-        %>
+<%--        <%--%>
+<%--            if (lastResults.size() != 0) {--%>
+<%--                out.println("<div class=\"container-main container-result\">");--%>
+<%--                out.println("<div class=\"last-results\">");--%>
+<%--                out.println("<div class=\"last-results-title\">Прошлые результаты:</div>");--%>
+<%--                out.println("<table id=\"last-results-table\"><tr>");--%>
+<%--                out.println("<th><div class=\"last-results-key\"><span>Координата X:</span></div></th>");--%>
+<%--                out.println("<th><div class=\"last-results-key\">Координата Y:</div></th>");--%>
+<%--                out.println("<th><div class=\"last-results-key\">Параметр R:</div></th>");--%>
+<%--                out.println("<th><div class=\"last-results-key\">Попала:</div></th>");--%>
+<%--                out.println("<th><div class=\"last-results-key\">Время выполнения:</div></th></tr>");--%>
+<%--                for (Result result : lastResults) {--%>
+<%--                    out.println("<tr class='request'>");--%>
+<%--                    out.println("<td class='parameter'><div>" + result.getX() + "</div></td>");--%>
+<%--                    out.println("<td class='parameter'><div>" + result.getY() + "</div></td>");--%>
+<%--                    out.println("<td class='parameter'><div>" + result.getR() + "</div></td>");--%>
+<%--                    out.println("<td class='parameter'><div>" + result.getHit() + "</div></td>");--%>
+<%--                    out.println("<td class='parameter'><div>" + result.getTime() + " мкс" + "</div></td>");--%>
+<%--                    out.println("</tr>");--%>
+<%--                }--%>
+<%--                out.println("</table>");--%>
+<%--                out.println("</div></div>");--%>
+<%--            }--%>
+<%--        %>--%>
     </div>
 </section>
 
