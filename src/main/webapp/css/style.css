@@ -80,6 +80,7 @@ body {
     height: 300px;
     border: 2px solid #c4c4c4;
     border-radius: 15px;
+    cursor: pointer;
 }
 
 .area:hover {
