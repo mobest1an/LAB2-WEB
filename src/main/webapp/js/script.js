@@ -18,7 +18,11 @@ $('.area').click(function (e) {
     y = -((y - 152) / coeff).toFixed(3);
     if (x >= -2 && x <= 2) {
         if (y > -3 && y < 3) {
-            window.location = window.location + '?x-change=' + x + '&y-change=' + y + '&r-change=' + r;
+            if (wasClicked) {
+                window.location = window.location + '?x-change=' + x + '&y-change=' + y + '&r-change=' + r + '&clear=true';
+            } else {
+                window.location = window.location + '?x-change=' + x + '&y-change=' + y + '&r-change=' + r;
+            }
         } else {
             yInfo.html("Число не соответствует диапазону!");
             yInfo.css("color", "red");
@@ -91,9 +95,12 @@ function validateY() {
     return false;
 }
 
+let wasClicked = false;
+
 document.getElementById("btn-clear").addEventListener("click", clear);
 
 function clear() {
+    wasClicked = true;
     let title = document.getElementsByClassName("last-results-title").item(0);
     title.innerText = "Таблица очищена";
 
