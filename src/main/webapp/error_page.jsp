@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 <body>
-<div class="container-main container-result">
+<div class="container-main container-result container-current-result">
     <h1>Ошибка, неверные значения!</h1>
 
     <%

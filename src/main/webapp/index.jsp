@@ -36,7 +36,6 @@
 <section class="program">
     <div class="container-main container-program">
         <div class="program-parts">
-            <span id="test"></span>
             <div class="program-img">
                 <svg class="area" viewBox="0 0 300 300">
                     <defs>

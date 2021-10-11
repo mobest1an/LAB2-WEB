@@ -10,7 +10,6 @@ $('.area').click(function (e) {
     let target = this.getBoundingClientRect();
     let x = e.clientX - target.left;
     let y = e.clientY - target.top;
-    $('#test').html(x + ' ' + y);
     let xInfo = $('#x-title');
     let yInfo = $('#y-title');
     let r = $('select[name=r-change]').val();
