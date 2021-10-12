@@ -64,21 +64,15 @@ public class AreaCheckServlet extends HttpServlet {
     }
 
     private boolean validateX(double x) {
-        if (x >= -2 && x <= 2) {
-            return true;
-        } else return false;
+        return x >= -2 && x <= 2;
     }
 
     private boolean validateY(double y) {
-        if (y > -3 && y < 3) {
-            return true;
-        } else return false;
+        return y > -3 && y < 3;
     }
 
     private boolean validateR(double r) {
-        if (r >= 1 && r <= 5) {
-            return true;
-        } else return false;
+        return r >= 1 && r <= 5;
     }
 
     private boolean validate(double x, double y, double r) {
