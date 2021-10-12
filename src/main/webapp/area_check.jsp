@@ -48,7 +48,7 @@
                     <div class="result-key">Попала:</div>
                 </th>
                 <th>
-                    <div class="result-key">Время выполнения скрипта:</div>
+                    <div class="result-key">Время выполнения:</div>
                 </th>
             </tr>
             <tr>

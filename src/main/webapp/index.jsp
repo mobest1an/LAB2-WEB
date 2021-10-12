@@ -76,6 +76,7 @@
                                     maxR = reqR;
                                 }
                             }
+                            out.println("<text x=\"5%\" y=\"10%\" fill=\"black\" fill-opacity=0.6>R = " + (int) maxR + "</text>");
                             for (Result result : lastResults) {
                                 double reqX = result.getX();
                                 double reqY = result.getY();
