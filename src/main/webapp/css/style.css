@@ -189,10 +189,15 @@ body {
 }
 
 .container-current-result {
+    display: none;
     margin-top: 5%;
     border: 2px solid #2f9aff;
     border-radius: 15px;
     padding: 10px;
+}
+
+.last-results {
+    display: none;
 }
 
 .result-title,

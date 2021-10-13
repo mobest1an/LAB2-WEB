@@ -20,6 +20,7 @@
         <input type="button" id="btn-back" class="btn btn-back" value="Назад">
     </div>
 </div>
+<script src="js/jquery-3.6.0.min.js"></script>
 <script src="js/backButton.js"></script>
 </body>
 </html>

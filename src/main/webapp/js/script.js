@@ -119,5 +119,6 @@ function clear() {
     input.setAttribute("value", true);
     input.setAttribute("type", "hidden");
     form.appendChild(input);
-
 }
+
+$(".last-results").slideDown(300);
