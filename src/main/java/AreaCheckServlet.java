@@ -1,3 +1,5 @@
+import tools.Result;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -50,15 +52,25 @@ public class AreaCheckServlet extends HttpServlet {
 
         long start = System.nanoTime();
 
+        String hit;
         if (checkArea(x, y, r)) {
-            request.setAttribute("hit", "Да");
+            hit = "Да";
         } else {
-            request.setAttribute("hit", "Нет");
+            hit = "Нет";
         }
+        request.setAttribute("hit", hit);
 
         long end = System.nanoTime();
         double elapsedTime = (double) (end - start) / 1000;
         request.setAttribute("time", elapsedTime);
+
+        Result result = new Result(x, y, r, hit, elapsedTime);
+        ArrayList<Result> lastResults = (ArrayList<Result>) getServletContext().getAttribute("last-results");
+        if (lastResults == null) {
+            lastResults = new ArrayList<>();
+        }
+        lastResults.add(result);
+        getServletContext().setAttribute("last-results", lastResults);
 
         request.getRequestDispatcher("/area_check.jsp").forward(request, response);
     }
