@@ -239,3 +239,10 @@ th div {
 .main-footer {
     padding-bottom: 35px;
 }
+
+.unselectable {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
