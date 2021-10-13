@@ -16,14 +16,6 @@
 <div class="container-main container-result container-current-result">
     <h1>Ошибка, неверные значения!</h1>
 
-    <%
-        request.setAttribute("x", null);
-        request.setAttribute("y", null);
-        request.setAttribute("r", null);
-        request.setAttribute("hit", null);
-        request.setAttribute("time", null);
-    %>
-
     <div class="back">
         <input type="button" id="btn-back" class="btn btn-back" value="Назад">
     </div>

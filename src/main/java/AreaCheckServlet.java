@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 @WebServlet(name = "AreaCheckServlet")
@@ -29,7 +28,7 @@ public class AreaCheckServlet extends HttpServlet {
             y = Double.parseDouble(yChange);
             r = Double.parseDouble(rChange);
         } catch (NumberFormatException e) {
-            request.getRequestDispatcher("/error_page.jsp").forward(request, response);
+            forwardToErrorPage(request, response);
             return;
         }
 
@@ -42,7 +41,7 @@ public class AreaCheckServlet extends HttpServlet {
         }
 
         if (!validate(x, y, r)) {
-            request.getRequestDispatcher("/error_page.jsp").forward(request, response);
+            forwardToErrorPage(request, response);
             return;
         }
 
@@ -73,6 +72,15 @@ public class AreaCheckServlet extends HttpServlet {
         getServletContext().setAttribute("last-results", lastResults);
 
         request.getRequestDispatcher("/area_check.jsp").forward(request, response);
+    }
+
+    private void forwardToErrorPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("x", null);
+        request.setAttribute("y", null);
+        request.setAttribute("r", null);
+        request.setAttribute("hit", null);
+        request.setAttribute("time", null);
+        request.getRequestDispatcher("/error_page.jsp").forward(request, response);
     }
 
     private boolean validateX(double x) {
