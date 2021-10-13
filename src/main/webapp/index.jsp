@@ -67,28 +67,21 @@
                     <text style="fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 10px; white-space: pre;" transform="matrix(1, 0, 0, 1, -32.9375, 164.453125)"><tspan x="187.945" y="39.215">-R/2</tspan><tspan x="187.94500732421875" dy="1em">​</tspan></text>
                     <text style="fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 10px; white-space: pre;" transform="matrix(1, 0, 0, 1, -97.4375, 104.953125)"><tspan x="187.945" y="39.215">-R/2</tspan><tspan x="187.94500732421875" dy="1em">​</tspan></text>
                     <%
-                        double maxR = 0;
-                        ArrayList<Result> lastResults = (ArrayList<Result>) request.getServletContext().getAttribute("last-results");
+                        ArrayList<Result> lastResults = (ArrayList<Result>) application.getAttribute("last-results");
                         if (lastResults.size() != 0) {
-                            for (Result result : lastResults) {
-                                double reqR = result.getR();
-                                if (reqR > maxR) {
-                                    maxR = reqR;
-                                }
-                            }
-                            out.println("<text x=\"5%\" y=\"10%\" fill=\"black\" fill-opacity=0.6>R = " + (int) maxR + "</text>");
+                            double reqR = lastResults.get(lastResults.size() - 1).getR();
+                            out.println("<text x=\"5%\" y=\"10%\" fill=\"black\" fill-opacity=0.6>R = " + (int) reqR + "</text>");
                             for (Result result : lastResults) {
                                 double reqX = result.getX();
                                 double reqY = result.getY();
-                                double reqR = result.getR();
-                                double coeff = 100 * (reqR / maxR);
+                                double coeff = 100;
                                 double x = reqX / reqR * coeff + 150;
                                 double y = 150 - (reqY) / reqR * coeff;
-                                if (reqX >= 0 && reqY >= 0 && (Math.pow(reqX, 2) + Math.pow(reqY, 2)) <= Math.pow(maxR, 2)) {
+                                if (reqX >= 0 && reqY >= 0 && (Math.pow(reqX, 2) + Math.pow(reqY, 2)) <= Math.pow(reqR, 2)) {
                                     out.println("<circle cx=\"" + x + "\" cy=\"" + y + "\" r=\"3\" fill=\"green\" />");
-                                } else if (reqX <= 0 && reqY >= 0 && reqX - reqY >= (-maxR)) {
+                                } else if (reqX <= 0 && reqY >= 0 && reqX - reqY >= (-reqR)) {
                                     out.println("<circle cx=\"" + x + "\" cy=\"" + y + "\" r=\"3\" fill=\"green\" />");
-                                } else if (reqX <= 0 && reqY <= 0 && reqX >= -maxR / 2 && reqY >= -maxR) {
+                                } else if (reqX <= 0 && reqY <= 0 && reqX >= -reqR / 2 && reqY >= -reqR) {
                                     out.println("<circle cx=\"" + x + "\" cy=\"" + y + "\" r=\"3\" fill=\"green\" />");
                                 } else {
                                     out.println("<circle cx=\"" + x + "\" cy=\"" + y + "\" r=\"3\" fill=\"red\" />");

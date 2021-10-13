@@ -22,12 +22,12 @@
     double time = (double) request.getAttribute("time");
 
     Result result = new Result(x, y, r, hit, time);
-    ArrayList<Result> lastResults = (ArrayList<Result>) request.getServletContext().getAttribute("last-results");
+    ArrayList<Result> lastResults = (ArrayList<Result>) application.getAttribute("last-results");
     if (lastResults == null) {
         lastResults = new ArrayList<>();
     }
     lastResults.add(result);
-    request.getServletContext().setAttribute("last-results", lastResults);
+    application.setAttribute("last-results", lastResults);
 %>
 
 <div class="container-main container-result container-current-result">
